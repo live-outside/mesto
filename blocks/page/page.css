@@ -1,0 +1,27 @@
+.page {
+  max-width: 1280px;
+  min-width: 320px;
+  margin: 0 auto;
+  padding: 0 200px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1050px) {
+  .page {
+    padding: 0 50px;
+  }
+}
+
+
+@media screen and (max-width: 450px) {
+  .page {
+    padding: 0 25px;
+  }
+}
+
+
+@media screen and (max-width: 320px) {
+  .page {
+    padding: 0 19px;
+  }
+}
