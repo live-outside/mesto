@@ -1,0 +1,16 @@
+.popup-card__form-label {
+  display: block;
+  padding-block-end: 30px;
+}
+
+.popup-card__form-label:last-of-type {
+  padding-block-end: 48px;
+}
+
+@media screen and (max-width: 470px) {
+
+  .popup-card__form-label:last-of-type {
+    padding-block-end: 45px;
+  }
+
+}

@@ -2,9 +2,10 @@ const page = document.querySelector('.page')
 const popup = page.querySelector('.popup')
 const buttonProfileEdit = page.querySelector('.profile__edit-button')
 const popupButtonClose = page.querySelector('.popup__form-close')
-const formElement = document.querySelector('.popup__form')
+const formElement = page.querySelector('.popup__form')
 const inputName = popup.querySelector('#name')
 const inputJob = popup.querySelector('#job')
+const elements = page.querySelector('.elements')
 
 const initialCards = [
   {
@@ -71,3 +72,16 @@ function formSubmitHandler (evt) {
 }
 
 formElement.addEventListener('submit', formSubmitHandler);
+
+function preRenderCards() {
+  initialCards.forEach(element => {
+    const cardTemplate = document.querySelector('#card').content
+    const cardElement = cardTemplate.querySelector('.element').cloneNode(true)
+    cardElement.querySelector('.element__pic').setAttribute('src', element['link'])
+    cardElement.querySelector('.element__pic').setAttribute('alt', element['name'])
+    cardElement.querySelector('.element__name').textContent =  element['name']
+    elements.append(cardElement)
+  });
+}
+
+document.addEventListener('DOMContentLoaded', preRenderCards())

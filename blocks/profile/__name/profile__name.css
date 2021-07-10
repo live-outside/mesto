@@ -9,7 +9,8 @@
   margin-inline: 0;
   margin: 0;
   padding-inline-end: 18px;
-
+  max-width: 520px;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 1050px) {
