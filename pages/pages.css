@@ -25,6 +25,7 @@
 @import url(../blocks/element/__name/element__name.css);
 @import url(../blocks/element/__like/element__like.css);
 @import url(../blocks/element/__like/_active/element__like_active.css);
+@import url(../blocks/element/__delete/element__delete.css);
 
 @import url(../blocks/footer/footer__copyright.css);
 
@@ -38,12 +39,18 @@
 @import url(../blocks/popup/__form-button/popup__form-button.css);
 @import url(../blocks/popup/__form-close/popup__form-close.css);
 
-@import url(../blocks/popup/popup-card.css);
-@import url(../blocks/popup/_opened/popup-card_opened.css);
-@import url(../blocks/popup/__container/popup-card__container.css);
-@import url(../blocks/popup/__form/popup-card__form.css);
-@import url(../blocks/popup/__form-heading/popup-card__form-heading.css);
-@import url(../blocks/popup/__form-label/popup-card__form-label.css);
-@import url(../blocks/popup/__form-input/popup-card__form-input.css);
-@import url(../blocks/popup/__form-button/popup-card__form-button.css);
-@import url(../blocks/popup/__form-close/popup-card__form-close.css);
+@import url(../blocks/popup-card/popup-card.css);
+@import url(../blocks/popup-card/_opened/popup-card_opened.css);
+@import url(../blocks/popup-card/__container/popup-card__container.css);
+@import url(../blocks/popup-card/__form/popup-card__form.css);
+@import url(../blocks/popup-card/__form-heading/popup-card__form-heading.css);
+@import url(../blocks/popup-card/__form-label/popup-card__form-label.css);
+@import url(../blocks/popup-card/__form-input/popup-card__form-input.css);
+@import url(../blocks/popup-card/__form-button/popup-card__form-button.css);
+@import url(../blocks/popup-card/__form-close/popup-card__form-close.css);
+
+@import url(../blocks/popup-picture/popup-picture.css);
+@import url(../blocks/popup-picture/__container/popup-picture__container.css);
+@import url(../blocks/popup-picture/__pic/popup-picture__pic.css);
+@import url(../blocks/popup-picture/__name/popup-picture__name.css);
+@import url(../blocks/popup-picture/__button-close/popup-picture__button-close.css);

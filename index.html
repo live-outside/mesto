@@ -34,15 +34,17 @@
           <img src="./images/element_1.jpg" alt="Церковь Карачаевск" class="element__pic">
           <div class="element__desc-wrapper">
             <p class="element__name">Карачаевск</p>
-            <button type="button" class="element__like"></button>
+            <button type="button" class="element__like element__like_active"></button>
           </div>
+          <button type="button" class="element__delete"></button>
         </div>
         <div class="element">
           <img src="./images/element_2.jpg" alt="Гора Эльбрус" class="element__pic">
           <div class="element__desc-wrapper">
             <p class="element__name">Гора Эльбрус</p>
-            <button type="button" class="element__like element__like_active"></button>
+            <button type="button" class="element__like"></button>
           </div>
+          <button type="button" class="element__delete"></button>
         </div>
         <div class="element">
           <img src="./images/element_3.jpg" alt="Виды Домбая" class="element__pic">
@@ -50,6 +52,7 @@
             <p class="element__name">Домбай</p>
             <button type="button" class="element__like"></button>
           </div>
+          <button type="button" class="element__delete"></button>
         </div>
         <div class="element">
           <img src="./images/element_4.jpg" alt="Гора Эльбрус" class="element__pic">
@@ -57,6 +60,7 @@
             <p class="element__name">Гора Эльбрус</p>
             <button type="button" class="element__like"></button>
           </div>
+          <button type="button" class="element__delete"></button>
         </div>
         <div class="element">
           <img src="./images/element_5.jpg" alt="Опять домбай" class="element__pic">
@@ -64,6 +68,7 @@
             <p class="element__name">Домбай</p>
             <button type="button" class="element__like"></button>
           </div>
+          <button type="button" class="element__delete"></button>
         </div>
         <div class="element">
           <img src="./images/element_6.jpg" alt="И опять церковь Карачаево-Черкессии" class="element__pic">
@@ -71,13 +76,13 @@
             <p class="element__name">Карачаево-Черкессия</p>
             <button type="button" class="element__like"></button>
           </div>
+          <button type="button" class="element__delete"></button>
         </div>
       </section>
     </main>
     <footer>
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-
     <div class="popup">
       <div class="popup__container">
         <form class="popup__form" name="edit_profile" action="#">
@@ -93,24 +98,28 @@
         </form>
       </div>
     </div>
-  </div>
-
-  <div class="popup-card">
-    <div class="popup-card__container">
-      <form class="popup-card__form" name="add_card" action="#">
-          <h2 class="popup-card__form-heading">Новое место</h2>
-          <label class="popup-card__form-label" for="place-name">
-            <input class="popup-card__form-input" type="text" name="place-name" id="place-name" placeholder="Название">
-          </label>
-          <label class="popup-card__form-label" for="place-link">
-            <input class="popup-card__form-input" type="text" name="place-link" id="place-link" placeholder="Ссылка на картинку">
-          </label>
-          <button class="popup-card__form-button" type="submit">Сохранить</button>
-        <button type="button" class="popup-card__form-close"></button>
-      </form>
+    <div class="popup-card">
+      <div class="popup-card__container">
+        <form class="popup-card__form" name="add_card" action="#">
+            <h2 class="popup-card__form-heading">Новое место</h2>
+            <label class="popup-card__form-label" for="place-name">
+              <input class="popup-card__form-input" type="text" name="place-name" id="place-name" placeholder="Название">
+            </label>
+            <label class="popup-card__form-label" for="place-link">
+              <input class="popup-card__form-input" type="text" name="place-link" id="place-link" placeholder="Ссылка на картинку">
+            </label>
+            <button class="popup-card__form-button" type="submit">Сохранить</button>
+          <button type="button" class="popup-card__form-close"></button>
+        </form>
+      </div>
     </div>
-  </div>
-
+    <div class="popup-picture">
+      <div class="popup-picture__container">
+        <img src="./images/element_1.jpg" alt="" class="popup-picture__pic">
+        <p class="popup-picture__name">Lorem ipsum dolor sit amet.</p>
+        <button type="button" class="popup-picture__button-close"></button>
+      </div>
+    </div>
   </div>
 
   <template id="card">
@@ -120,6 +129,13 @@
         <p class="element__name"></p>
         <button type="button" class="element__like"></button>
       </div>
+      <button type="button" class="element__delete"></button>
+    </div>
+  </template>
+  <template>
+    <div class="popup-picture">
+      <img src="" alt="" class="popup-picture__pic">
+      <p class="popup-picture__name"></p>
     </div>
   </template>
   <script src="./scripts/main.js"></script>

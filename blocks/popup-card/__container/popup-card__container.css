@@ -2,6 +2,7 @@
   background: #FFFFFF;
   border-radius: 10px;
   max-width: 430px;
+  min-width: 430px;
   background: #FFFFFF;
   border-radius: 10px;
 
@@ -13,7 +14,8 @@
 
 @media screen and (max-width: 470px) {
   .popup-card__container {
-    max-width: 282px;
+
+    min-width: 282px;
   }
 
 }
