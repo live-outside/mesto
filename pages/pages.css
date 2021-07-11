@@ -50,6 +50,7 @@
 @import url(../blocks/popup-card/__form-close/popup-card__form-close.css);
 
 @import url(../blocks/popup-picture/popup-picture.css);
+@import url(../blocks/popup-picture/_opened/popup-picture_opened.css);
 @import url(../blocks/popup-picture/__container/popup-picture__container.css);
 @import url(../blocks/popup-picture/__pic/popup-picture__pic.css);
 @import url(../blocks/popup-picture/__name/popup-picture__name.css);

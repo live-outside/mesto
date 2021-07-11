@@ -1,6 +1,7 @@
 const page = document.querySelector('.page')
 const popup = page.querySelector('.popup')
 const popupCard = page.querySelector('.popup-card')
+
 const buttonProfileEdit = page.querySelector('.profile__edit-button')
 const buttonProfileAdd = page.querySelector('.profile__add-button')
 const popupButtonClose = page.querySelector('.popup__form-close')
@@ -110,6 +111,18 @@ popupCard.addEventListener('click', (event) => {
   }
 })
 
+function openPopupPicture() {
+  //console.log(popupPicture)
+  const popupPicture = document.querySelector('.popup-picture')
+  popupPicture.classList.add('popup-picture_opened')
+  console.log(popupPicture)
+
+}
+
+function closePopupPicture() {
+  popupPicture.classList.remove('popup-picure_opened')
+}
+
 function formSubmitHandler (evt) {
   evt.preventDefault();
     if (evt.target.classList.contains('popup__form')) {
@@ -146,3 +159,16 @@ elements.addEventListener('click', (event) => {
     event.target.parentNode.remove()
   }
 })
+
+elements.addEventListener('click', (event) => {
+  if (event.target.classList.contains('element__pic')) {
+    const popupPictureTemplate = document.querySelector('#popup-picture').content
+    const popupPictureElement = popupPictureTemplate.querySelector('.popup-picture').cloneNode(true)
+    popupPictureElement.querySelector('.popup-picture__pic').setAttribute('src', event.target.getAttribute('src'))
+    popupPictureElement.querySelector('.popup-picture__pic').setAttribute('alt', event.target.getAttribute('alt'))
+    popupPictureElement.querySelector('.popup-picture__name').textContent = event.target.getAttribute('alt')
+    page.append(popupPictureElement)
+    openPopupPicture()
+  }
+})
+
