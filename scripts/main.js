@@ -1,5 +1,5 @@
 const page = document.querySelector('.page')
-let popup = page.querySelector('.popup')
+const popupProfile = page.querySelector('.popup')
 const popupCard = page.querySelector('.popup-card')
 const popupPicture = page.querySelector('.popup-picture')
 const buttonProfileEdit = page.querySelector('.profile__edit-button')
@@ -7,8 +7,8 @@ const buttonProfileAdd = page.querySelector('.profile__add-button')
 const popupButtonClose = page.querySelector('.popup__form-close')
 const popupPictureClose = document.querySelector('.popup-picture__button-close')
 const popupCardButtonClose = page.querySelector('.popup-card__form-close')
-const formElement = page.querySelector('.popup__form')
-const cardForm = page.querySelector('.popup-card__form')
+const formProfile = page.querySelector('.popup__form')
+const formCard = page.querySelector('.popup-card__form')
 const elements = page.querySelector('.elements')
 const initialCards = [
   {
@@ -52,42 +52,37 @@ function resetInputInForm(form){
 
 // Редактирование профиля
 buttonProfileEdit.addEventListener('click', () => {
-  let popup = page.querySelector('.popup')
-  popup.querySelector('#name').value = page.querySelector('.profile__name').textContent
-  popup.querySelector('#job').value = page.querySelector('.profile__job').textContent
-  popupOpened(popup)
-}, false);
+  popupProfile.querySelector('#name').value = page.querySelector('.profile__name').textContent
+  popupProfile.querySelector('#job').value = page.querySelector('.profile__job').textContent
+  popupOpened(popupProfile)
+})
 
 // Закрытие попапа по кнопке
 popupButtonClose.addEventListener('click', () => {
-  let popup = page.querySelector('.popup')
-  popupClose(popup)
-}, false);
+  popupClose(popupProfile)
+})
 
 // Закрытие попапа по  клику вне попапа
-popup.addEventListener('click', (event) => {
+popupProfile.addEventListener('click', (event) => {
   if  (event.target === event.currentTarget) {
-    popupClose(popup)
+    popupClose(popupProfile)
   }
 })
 
 //слушатель на открытие попапа создания новой карточки
 buttonProfileAdd.addEventListener('click', () => {
-  let popup = page.querySelector('.popup-card')
-  popupOpened(popup)
-}, false);
+  popupOpened(popupCard)
+})
 
 //закрытие попапа по кнопке
 popupCardButtonClose.addEventListener('click', () => {
-  let popup = page.querySelector('.popup-card')
-  popupClose(popup)
-}, false);
+  popupClose(popupCard)
+})
 
 // закрытие попапа вне области попапа
 popupCard.addEventListener('click', (event) => {
   if  (event.target === event.currentTarget) {
-    let popup = page.querySelector('.popup-card')
-    popupClose(popup)
+    popupClose(popupCard)
   }
 })
 
@@ -97,7 +92,7 @@ function addNewCard(container, cardElement) {
 }
 
 //инициализациия карточки и навешивание слушателей
-function createCard(name, link) {
+function addCard(name, link) {
   const cardTemplate = document.querySelector('#card').content
   const cardElement = cardTemplate.querySelector('.element').cloneNode(true)
     cardElement.querySelector('.element__pic').setAttribute('src', link)
@@ -105,10 +100,10 @@ function createCard(name, link) {
     cardElement.querySelector('.element__name').textContent = name
 
   const cardElementPic = cardElement.querySelector('.element__pic')
-    cardElementPic.addEventListener('click', (p) => {
-      popupPicture.querySelector('.popup-picture__pic').setAttribute('src', p.target.getAttribute('src'))
-      popupPicture.querySelector('.popup-picture__pic').setAttribute('alt', p.target.getAttribute('alt'))
-      popupPicture.querySelector('.popup-picture__name').textContent = p.target.getAttribute('alt')
+    cardElementPic.addEventListener('click', (evt) => {
+      popupPicture.querySelector('.popup-picture__pic').setAttribute('src', evt.target.getAttribute('src'))
+      popupPicture.querySelector('.popup-picture__pic').setAttribute('alt', evt.target.getAttribute('alt'))
+      popupPicture.querySelector('.popup-picture__name').textContent = evt.target.getAttribute('alt')
       popupOpened(popupPicture)
   })
 
@@ -116,48 +111,47 @@ function createCard(name, link) {
     popupClose(popupPicture)
   })
 
-  popupPicture.addEventListener('click', (event) => {
-    if  (event.target === event.currentTarget) {
+  popupPicture.addEventListener('click', (evt) => {
+    if  (evt.target === evt.currentTarget) {
       popupClose(popupPicture)
     }
   })
 
   const deleteButton = cardElement.querySelector('.element__delete')
-    deleteButton.addEventListener('click', (d) => {
-        d.target.parentNode.remove()
+    deleteButton.addEventListener('click', (evt) => {
+        evt.target.parentNode.remove()
   })
 
   const likeButton = cardElement.querySelector('.element__like')
     likeButton.addEventListener('click', () => {
       likeButton.classList.toggle('element__like_active')
   })
-
-return cardElement;
+  return cardElement
 }
 
-// обработчик форм.
-function formSubmitHandler (evt) {
+//меняем стандартное поведение формы для отладки
+function formSubmitHandler(evt) {
   evt.preventDefault();
-  if (evt.target.classList.contains('popup__form')) {
-  page.querySelector('.profile__name').textContent = popup.querySelector('#name').value
-  page.querySelector('.profile__job').textContent = popup.querySelector('#job').value
-  popupClose(popup)
-  } else if (evt.target.classList.contains('popup-card__form')) {
-    let popup = page.querySelector('.popup-card')
-    let name = page.querySelector('#place-name').value
-    let link = page.querySelector('#place-link').value
-    addNewCard(elements, createCard(name, link))
-    resetInputInForm(cardForm)
-    popupClose(popup)
-  }
 }
 
-//отправляем успех в обработку
-cardForm.addEventListener('submit', formSubmitHandler )
-formElement.addEventListener('submit', formSubmitHandler);
+formProfile.addEventListener('submit', (evt) => {
+  page.querySelector('.profile__name').textContent = popupProfile.querySelector('#name').value
+  page.querySelector('.profile__job').textContent = popupProfile.querySelector('#job').value
+  popupClose(popupProfile)
+  formSubmitHandler(evt)
+});
+
+formCard.addEventListener('submit', (evt) => {
+  const name = page.querySelector('#place-name').value
+  const link = page.querySelector('#place-link').value
+  addNewCard(elements, addCard(name, link))
+  resetInputInForm(formCard)
+  popupClose(popupCard)
+  formSubmitHandler(evt)
+})
 
 //функция добавление карточек из массива при загрузке страницы
-function preRenderCards() {
+function createCard() {
   initialCards.forEach(element => {
     const cardTemplate = document.querySelector('#card').content
     const cardElement = cardTemplate.querySelector('.element').cloneNode(true)
@@ -166,10 +160,10 @@ function preRenderCards() {
     cardElement.querySelector('.element__name').textContent =  element['name']
 
     const cardElementPic = cardElement.querySelector('.element__pic')
-      cardElementPic.addEventListener('click', (p) => {
-        popupPicture.querySelector('.popup-picture__pic').setAttribute('src', p.target.getAttribute('src'))
-        popupPicture.querySelector('.popup-picture__pic').setAttribute('alt', p.target.getAttribute('alt'))
-        popupPicture.querySelector('.popup-picture__name').textContent = p.target.getAttribute('alt')
+      cardElementPic.addEventListener('click', (evt) => {
+        popupPicture.querySelector('.popup-picture__pic').setAttribute('src', evt.target.getAttribute('src'))
+        popupPicture.querySelector('.popup-picture__pic').setAttribute('alt', evt.target.getAttribute('alt'))
+        popupPicture.querySelector('.popup-picture__name').textContent = evt.target.getAttribute('alt')
         popupOpened(popupPicture)
     })
 
@@ -184,8 +178,8 @@ function preRenderCards() {
     })
 
     const deleteButton = cardElement.querySelector('.element__delete')
-    deleteButton.addEventListener('click', (d) => {
-        d.target.parentNode.remove()
+    deleteButton.addEventListener('click', (evt) => {
+        evt.target.parentNode.remove()
     })
 
     const likeButton = cardElement.querySelector('.element__like')
@@ -197,4 +191,4 @@ function preRenderCards() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', preRenderCards())
+document.addEventListener('DOMContentLoaded', createCard())
