@@ -100,10 +100,10 @@ function addCard(name, link) {
     cardElement.querySelector('.element__name').textContent = name
 
   const cardElementPic = cardElement.querySelector('.element__pic')
-    cardElementPic.addEventListener('click', (evt) => {
-      popupPicture.querySelector('.popup-picture__pic').setAttribute('src', evt.target.getAttribute('src'))
-      popupPicture.querySelector('.popup-picture__pic').setAttribute('alt', evt.target.getAttribute('alt'))
-      popupPicture.querySelector('.popup-picture__name').textContent = evt.target.getAttribute('alt')
+    cardElementPic.addEventListener('click', () => {
+      popupPicture.querySelector('.popup-picture__pic').setAttribute('src', link)
+      popupPicture.querySelector('.popup-picture__pic').setAttribute('alt', name)
+      popupPicture.querySelector('.popup-picture__name').textContent = name
       popupOpened(popupPicture)
   })
 
