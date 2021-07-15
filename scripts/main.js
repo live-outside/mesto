@@ -87,7 +87,7 @@ popupCard.addEventListener('click', (event) => {
 })
 
 //Функция добавления новой карточки
-function addNewCard(container, cardElement) {
+function prependCard(container, cardElement) {
   container.prepend(cardElement)
 }
 
@@ -144,51 +144,17 @@ formProfile.addEventListener('submit', (evt) => {
 formCard.addEventListener('submit', (evt) => {
   const name = page.querySelector('#place-name').value
   const link = page.querySelector('#place-link').value
-  addNewCard(elements, addCard(name, link))
+  prependCard(elements, addCard(name, link))
   resetInputInForm(formCard)
   popupClose(popupCard)
   formSubmitHandler(evt)
 })
 
 //функция добавление карточек из массива при загрузке страницы
-function createCard() {
+function createCards() {
   initialCards.forEach(element => {
-    const cardTemplate = document.querySelector('#card').content
-    const cardElement = cardTemplate.querySelector('.element').cloneNode(true)
-    cardElement.querySelector('.element__pic').setAttribute('src', element['link'])
-    cardElement.querySelector('.element__pic').setAttribute('alt', element['name'])
-    cardElement.querySelector('.element__name').textContent =  element['name']
-
-    const cardElementPic = cardElement.querySelector('.element__pic')
-      cardElementPic.addEventListener('click', (evt) => {
-        popupPicture.querySelector('.popup-picture__pic').setAttribute('src', evt.target.getAttribute('src'))
-        popupPicture.querySelector('.popup-picture__pic').setAttribute('alt', evt.target.getAttribute('alt'))
-        popupPicture.querySelector('.popup-picture__name').textContent = evt.target.getAttribute('alt')
-        popupOpened(popupPicture)
+    prependCard(elements, addCard(element.name, element.link))
     })
+  }
 
-    popupPictureClose.addEventListener('click', () => {
-      popupClose(popupPicture)
-    })
-
-    popupPicture.addEventListener('click', (event) => {
-      if  (event.target === event.currentTarget) {
-        popupClose(popupPicture)
-      }
-    })
-
-    const deleteButton = cardElement.querySelector('.element__delete')
-    deleteButton.addEventListener('click', (evt) => {
-        evt.target.parentNode.remove()
-    })
-
-    const likeButton = cardElement.querySelector('.element__like')
-    likeButton.addEventListener('click', () => {
-      likeButton.classList.toggle('element__like_active')
-    })
-
-    elements.append(cardElement)
-  });
-}
-
-document.addEventListener('DOMContentLoaded', createCard())
+document.addEventListener('DOMContentLoaded', createCards())
