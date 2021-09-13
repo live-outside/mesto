@@ -88,7 +88,7 @@ popupCard.addEventListener('click', (event) => {
 
 //Функция добавления новой карточки
 function prependCard(container, cardElement) {
-  container.prepend(cardElement)
+  container.append(cardElement)
 }
 
 //инициализациия карточки и навешивание слушателей
